@@ -1,0 +1,165 @@
+$color1: #2589bd;
+$color2: #187795;
+$color3: #38686a;
+$color4: #a3b4a2;
+$color5: #cdc6ae;
+$white: #FAFAFA;
+$black: #090909;
+
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+}
+body {
+    background-color: rgba($color4, 0.3);
+}
+/*
+nav {
+    height: 40px;
+    background-color: $color1;
+    ul {
+        height: 100%;
+        width: 45%;
+        a {
+            height: 100%;
+            display: block;
+            color: $white;
+            text-align: center;
+            line-height: 20px;
+            min-width: 15%;
+            padding: 0 10px;
+            text-decoration: none;
+            float: left;
+            li {
+                list-style: none;
+                display: block;
+                margin-top: 10px;
+            }
+        }
+        a#logo{
+            margin: 0 50px;
+            min-width: 40px;
+            padding: 0;
+            width:40px;
+            li {
+                height: 40px;
+                width: 40px;
+                margin: 0;
+            }
+            img {
+                height: 40px;
+            }
+        }
+        a:hover, div#login-button:hover{
+            background: rgba($color: #fff, $alpha: 0.2);
+            cursor: pointer;
+        }
+    }
+    div#login-button {
+        display: block;
+        width: 80px;
+        float: left;
+        margin-right: 10px;
+        height: 40px;
+    }
+}*/
+nav {
+    background: $color1;
+    height: 40px;
+    ul {
+        height: inherit;
+        li {
+            float: left;
+            min-width: 10%;
+            text-align: center;
+            list-style: none;
+            height: inherit;
+            img {
+                width: 40px;
+            }
+            a {
+                text-decoration: none;
+                color: $white;
+                display: block;
+                height: 20px;
+                padding: 10px 0;
+            }
+            a#logo {
+                padding: 0;
+                margin-left: 30px;
+                height: 40px;
+            }
+        }
+        li:nth-last-child(1){
+            float: right;
+            input {
+                height: 38px;
+                margin: 1px 60px 1px 0px;
+            }
+        }
+
+        a#login-button {
+            margin-right: 40px;
+            margin-left: 40px;
+            padding: 10px 10px;
+            min-width: 15%;
+            display: block;
+            cursor: pointer;
+            float: right;
+        }
+        a:hover {
+            background-color: rgba($white, 0.1);
+        }
+    }
+}
+div#login {
+    position: absolute;
+    width: 40%;
+    min-width: 300px;
+    left: 30%;
+    height: 300px;
+    top: 150px;
+    background-color: $color1;
+    display: none;
+    border-radius: 5px;
+    border: 1px solid black;
+}
+
+div#main {
+    padding-top: 30px;
+    margin: auto;
+    width: 90%;
+    max-width: 1000px;
+    min-width: 400px;
+    overflow: auto;
+}
+div.listings {
+    background: #187795;
+    div.listing-card {
+        //5 42 6 42 5
+        margin: 30px 0 30px 5%;
+        height: 400px;
+        width: 42%;
+        box-sizing: border-box;
+        padding: 10px 5%;
+        float: left;
+        background: $color1;
+        border-radius: 5px;
+        overflow: hidden;
+        img {
+            box-sizing: border-box;
+            border: 3px solid rgba($color4, 0.3);
+            margin: 5px 0;
+            width: 100%;
+            display: block;
+            margin: auto;
+            overflow: hidden;
+        }
+    }
+}
+.mid {
+    text-align: center;
+}
