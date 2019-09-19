@@ -261,7 +261,7 @@ app.post('/addManufacturers', function (req, res) {
     res.send(manufacturers);
 });
 app.get('/', function (req, res) {
-    res.sendFile(__dirname + "/student/" + "index.html");
+    res.sendFile("index.html");
 });
 
 var server = app.listen(8081, function () {

@@ -81,7 +81,7 @@ nav ul li a {
   color: #FAFAFA;
   display: block;
   height: 20px;
-  padding: 10px 0;
+  padding: 10px;
 }
 nav ul li a#logo {
   padding: 0;
@@ -137,6 +137,7 @@ div.listings div.listing-card {
   margin: 30px 0 30px 5%;
   height: 400px;
   width: 42%;
+  min-width: 300px;
   box-sizing: border-box;
   padding: 10px 5%;
   float: left;
@@ -156,6 +157,10 @@ div.listings div.listing-card img {
 
 .mid {
   text-align: center;
+}
+
+.hidden {
+  display: none;
 }
 
 /*# sourceMappingURL=index.css.map */

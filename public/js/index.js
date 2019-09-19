@@ -1,28 +1,39 @@
-(function(){
-    console.log("sdfghjksdfghjksdfghjk");
-})()
-
 var cars = {};
 var login = document.getElementById("login");
+var main = document.getElementById("main");
 
-$(document).ready(function(){  
-    (function() {
-        var aj = $.ajax("/cars")
-        .done( (data) => {
+var car_listings = document.createElement("div");
+car_listings.className = "listings";
+
+var manuf_listings = document.createElement("div");
+manuf_listings.className = "manuf_list";
+
+var target = "";
+
+(function() {
+    $.ajax("/cars")
+        .done( data => {
             for(car of data){
                 //console.log(car);
-                add_listing(car);
+                add_car_listing(car);
             }
+        });
+    $.ajax("/manufacturers")
+        .done( data => {
+            add_manuf_listing(data);
         })
-    })()
-    $("#login-button").click(function(){
-        $("#login").toggle();
-    });
+})()
+
+$("#login-button").click(function(){
+    login.toggle();
+});
+$("#logo").click(() => {
+    target = "landing";
+   clear();
 });
 
-var listings = document.getElementById("listings");
 
-function add_listing(car) {
+function add_car_listing(car) {
     var card = document.createElement("div");
     card.className += "listing-card";
     var title = document.createElement("h3");
@@ -53,7 +64,18 @@ function add_listing(car) {
     card.appendChild(avail);
     card.appendChild(cons);
     card.appendChild(hp);
-    listings.appendChild(card);
+    car_listings.appendChild(card);
+}
+
+function add_manuf_listing(manufs) {
+    //console.log(manufs);
+    var list = document.createElement("ul");
+    for(m of manufs){
+        var li = document.createElement("li");
+        li.textContent = m.name + " " + m.country + " " + m.founded;
+        list.appendChild(li);
+    }
+    manuf_listings.appendChild(list);
 }
 
 function parse_json() {
@@ -62,4 +84,51 @@ function parse_json() {
 
 function cp() {
     return document.createElement("p");
+}
+
+$("#list_cars").click(() => {
+    target = "cars"
+    clear();
+    main.appendChild(car_listings);
+});
+
+$("#list_manuf").click(() => {
+    target = "manufs";
+    clear();
+    main.appendChild(manuf_listings);
+});
+
+
+$("#search_bar").on("input", function() {
+    console.log($(this).val());
+    reset_classes();
+    search(target, $(this).val());
+});
+
+function clear(){
+    $("#search_bar").val("");
+    main.innerHTML = "";
+}
+
+function search(t, str) {
+    switch (t) {
+        case "cars":
+            for(a of car_listings.childNodes){
+                if(!a.childNodes[0].textContent.toLowerCase().includes(str)){
+                    console.log(a.childNodes[0].textContent);
+                    a.className += " hidden";
+                }
+            }
+        default:
+            break;
+    }
+    console.log("\n");
+}
+
+function reset_classes() {
+
+    for(a of car_listings.childNodes){
+        a.className = "listing-card";
+    }
+    //manufs
 }
