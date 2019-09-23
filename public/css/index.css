@@ -1,4 +1,3 @@
-@import url("https://fonts.googleapis.com/css?family=Roboto&display=swap");
 * {
   margin: 0;
   padding: 0;
@@ -88,19 +87,19 @@ nav ul li a#logo {
   margin-left: 30px;
   height: 40px;
 }
-nav ul li:nth-last-child(1) {
+nav ul li.floatright {
   float: right;
-}
-nav ul li:nth-last-child(1) input {
-  height: 38px;
-  margin: 1px 60px 1px 0px;
-}
-nav ul a#login-button {
-  margin-right: 40px;
-  margin-left: 40px;
-  padding: 10px 10px;
-  min-width: 15%;
   display: block;
+  min-width: 30%;
+}
+nav ul li.floatright input {
+  float: left;
+  height: 38px;
+  margin: 1px 0px;
+}
+nav ul li.floatright a#login-button {
+  padding: 10px 40px;
+  min-width: 20%;
   cursor: pointer;
   float: right;
 }
@@ -119,6 +118,35 @@ div#login {
   display: none;
   border-radius: 5px;
   border: 1px solid black;
+  padding: 0 0 0 5%;
+  box-sizing: border-box;
+}
+div#login #close {
+  float: right;
+  font-size: 200%;
+  cursor: pointer;
+  margin-right: 9px;
+}
+div#login form {
+  margin: 20px auto 0;
+}
+div#login form .label {
+  margin-top: 10px;
+}
+div#login form .label label {
+  margin-right: 20px;
+}
+div#login .bts {
+  position: absolute;
+  bottom: 10px;
+}
+div#login .bts a {
+  margin-right: 20px;
+}
+div#login .bts button {
+  border-radius: 5px;
+  padding: 5px 15px;
+  background: #a3b4a2;
 }
 
 div#main {
@@ -161,6 +189,39 @@ div.listings div.listing-card img {
 
 .hidden {
   display: none;
+}
+
+p#alert {
+  background: #fa1010;
+  text-align: center;
+  position: fixed;
+  top: 45px;
+  width: 80%;
+  padding: 0;
+  margin: 0 10%;
+  display: none;
+  border-radius: 5px;
+  z-index: 1000;
+}
+
+div#profile {
+  background: #2589bd;
+  display: none;
+  max-width: 200px;
+  position: absolute;
+  right: 1px;
+  top: 41px;
+  border-radius: 5px;
+}
+div#profile ul li {
+  color: #FAFAFA;
+  padding: 5px 0;
+  margin: 0 10px;
+  list-style: none;
+  cursor: pointer;
+}
+div#profile ul li::hover {
+  background-color: rgba(250, 250, 250, 0.1);
 }
 
 /*# sourceMappingURL=index.css.map */

@@ -10,6 +10,35 @@ manuf_listings.className = "manuf_list";
 
 var target = "";
 
+function check_login(){
+    //
+    let logged_in = get_cookie("user") != "" ? true : false;
+    if (logged_in) {
+        console.log("logged in");
+        return true;
+    } else {
+        console.log("logged out");
+        return false;
+    }
+}
+function get_cookie(str){
+    let name = str + "=";
+    let d = decodeURIComponent(document.cookie).split(";");
+    for(var i = 0; i <d.length; i++) {
+        var c = d[i];
+        while (c.charAt(0) == ' ') {
+          c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+          return c.substring(name.length, c.length);
+        }
+      }
+      return "";
+}
+
+function delete_cookie(str){
+    document.cookie = str + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;"; 
+}
 (function() {
     $.ajax("/cars")
         .done( data => {
@@ -22,14 +51,16 @@ var target = "";
         .done( data => {
             add_manuf_listing(data);
         })
+    if(check_login()){
+        $("#login-button").html("Profile");
+    } else {
+        $("#login-button").html("Sign up/Login");
+    }
 })()
 
-$("#login-button").click(function(){
-    login.toggle();
-});
 $("#logo").click(() => {
     target = "landing";
-   clear();
+    clear_search();
 });
 
 
@@ -78,7 +109,7 @@ function add_manuf_listing(manufs) {
     manuf_listings.appendChild(list);
 }
 
-function parse_json() {
+function parse_json() {Profile
     
 }
 
@@ -88,13 +119,13 @@ function cp() {
 
 $("#list_cars").click(() => {
     target = "cars"
-    clear();
+    clear_search();
     main.appendChild(car_listings);
 });
 
 $("#list_manuf").click(() => {
     target = "manufs";
-    clear();
+    clear_search();
     main.appendChild(manuf_listings);
 });
 
@@ -105,16 +136,17 @@ $("#search_bar").on("input", function() {
     search(target, $(this).val());
 });
 
-function clear(){
+function clear_search(){
     $("#search_bar").val("");
     main.innerHTML = "";
+    reset_classes();
 }
 
 function search(t, str) {
     switch (t) {
         case "cars":
             for(a of car_listings.childNodes){
-                if(!a.childNodes[0].textContent.toLowerCase().includes(str)){
+                if(!a.childNodes[0].textContent.toLowerCase().includes(str.toLowerCase())){
                     console.log(a.childNodes[0].textContent);
                     a.className += " hidden";
                 }
@@ -131,4 +163,63 @@ function reset_classes() {
         a.className = "listing-card";
     }
     //manufs
+}
+
+$("#close").click(() => {
+    $("#login").hide();
+});
+
+$("#login_submit").click(() => {
+    let login_user = $("#login_user").val();
+    let login_pwd = $("#login_pwd").val();
+
+
+    console.log("Username: ", login_user, " Password: ", login_pwd);
+    if(login_user == "" || login_pwd == ""){
+        show_error("Login failed");
+    } else {
+        //log in
+        console.log("logging in..");
+        document.cookie = "user=" + login_user;
+        location.reload();
+    }
+});
+
+function show_error(error_msg) {
+    let perror = $("#alert");
+    console.log(error_msg);
+    if(error_msg == undefined){
+        perror.html("Something went wrong!");
+    } else {
+        perror.html(error_msg);
+    }
+    perror.fadeIn();
+    setTimeout(() => {
+        perror.fadeOut();
+    }, 3000);
+}
+
+var login_btn = document.getElementById("login-button");
+login_btn.addEventListener("click", () => {
+    if(check_login()){
+        $("#profile").toggle();
+    } else {
+        $("#login").toggle();
+    }
+});
+
+//$("#logout_btn").unbind('click').bind("click", () => {
+//});
+
+
+var logout_button = document.getElementById("logout_btn");
+
+logout_button.addEventListener("click", () => {
+    logout();
+});
+
+function logout() {
+    console.log("logging out..");
+    delete_cookie("user");
+    location.reload();
 }

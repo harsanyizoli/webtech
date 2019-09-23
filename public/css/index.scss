@@ -6,7 +6,7 @@ $color5: #cdc6ae;
 $white: #FAFAFA;
 $black: #090909;
 
-@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+//@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
 
 * {
     margin: 0;
@@ -93,23 +93,24 @@ nav {
                 height: 40px;
             }
         }
-        li:nth-last-child(1){
-            float: right;
+        
+        li.floatright {
+            float: right;    
+            display: block;
+            min-width: 30%;
             input {
+                float: left;
                 height: 38px;
-                margin: 1px 60px 1px 0px;
+                margin: 1px 0px;
+            }
+            a#login-button {
+                padding: 10px 40px;
+                min-width: 20%;
+                cursor: pointer;
+                float: right;
             }
         }
 
-        a#login-button {
-            margin-right: 40px;
-            margin-left: 40px;
-            padding: 10px 10px;
-            min-width: 15%;
-            display: block;
-            cursor: pointer;
-            float: right;
-        }
         a:hover {
             background-color: rgba($white, 0.1);
         }
@@ -126,6 +127,35 @@ div#login {
     display: none;
     border-radius: 5px;
     border: 1px solid black;
+    padding: 0 0 0 5%;
+    box-sizing: border-box;
+    #close {
+        float: right;
+        font-size: 200%;
+        cursor: pointer;
+        margin-right: 9px;
+    }
+    form {
+        margin: 20px auto 0;
+        .label {
+            margin-top: 10px;
+            label {
+                margin-right: 20px;
+            }
+        }
+    }
+    .bts {
+        position: absolute;
+        bottom: 10px;
+        a {
+            margin-right: 20px;
+        }
+        button {
+            border-radius: 5px;
+            padding: 5px 15px;
+            background: $color4;
+        }
+    }
 }
 
 div#main {
@@ -167,4 +197,39 @@ div.listings {
 
 .hidden {
     display: none;
+}
+
+p#alert {
+    background: #fa1010;
+    text-align: center;
+    position: fixed;
+    top: 45px;
+    width: 80%;
+    padding: 0;
+    margin: 0 10%;
+    display: none;
+    border-radius: 5px;
+    z-index: 1000;
+}
+
+div#profile {
+    background: $color1;
+    display: none;
+    max-width: 200px;
+    position: absolute;
+    right: 1px;
+    top: 41px;
+    border-radius: 5px;
+    ul {
+        li {
+            color: $white;
+            padding: 5px 0;
+            margin: 0 10px;
+            list-style: none;
+            cursor: pointer;
+        }
+        li::hover {
+            background-color: rgba($white, 0.1);
+        }
+    }
 }
