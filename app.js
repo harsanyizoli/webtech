@@ -181,7 +181,7 @@ var cars = [
 app.use(express.static(__dirname + '/student'));
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({
-    extended: false
+    extended: true
 }));
 
 
@@ -204,6 +204,7 @@ app.get('/cars', function (req, res) {
 });
 app.get('/manufacturer', function (req, res) {
     var ok = false;
+    console.log(req.cookies);
     for (var manufacturer of manufacturers) {
         if (manufacturer.name === req.cookies.name) {
             ok = true;

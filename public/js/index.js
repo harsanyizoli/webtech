@@ -223,3 +223,12 @@ function logout() {
     delete_cookie("user");
     location.reload();
 }
+
+function get_cars(man) {
+    document.cookies = "name=" + man;
+    console.log(document.cookies);
+    $.get("/manufacturer", data => {
+        console.log(data);
+    });
+    //delete_cookie('name');
+}
