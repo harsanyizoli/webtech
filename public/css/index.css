@@ -224,4 +224,26 @@ div#profile ul li::hover {
   background-color: rgba(250, 250, 250, 0.1);
 }
 
+ul.outer-list {
+  width: 100%;
+}
+ul.outer-list li.outer-li {
+  margin-bottom: 5px;
+  width: 100%;
+}
+ul.outer-list li.outer-li ul.inner-list li.li-name {
+  display: inline-block;
+  width: 20%;
+}
+ul.outer-list li.outer-li ul.inner-list li.li-country {
+  margin-left: 50px;
+  display: inline-block;
+  width: 20%;
+}
+ul.outer-list li.outer-li ul.inner-list li.li-founded {
+  display: inline-block;
+  width: 20%;
+  float: right;
+}
+
 /*# sourceMappingURL=index.css.map */

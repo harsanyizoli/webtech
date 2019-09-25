@@ -181,7 +181,7 @@ var cars = [
 app.use(express.static(__dirname + '/student'));
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({
-    extended: true
+    extended: false
 }));
 
 

@@ -101,10 +101,26 @@ function add_car_listing(car) {
 function add_manuf_listing(manufs) {
     //console.log(manufs);
     var list = document.createElement("ul");
+    list.className = "outer-list";
     for(m of manufs){
-        var li = document.createElement("li");
-        li.textContent = m.name + " " + m.country + " " + m.founded;
-        list.appendChild(li);
+        var outer_li = document.createElement("li");
+        outer_li.className = "outer-li";
+        var inner_ul = document.createElement("ul");
+        inner_ul.className = "inner-list";
+        var inner_li_n = document.createElement("li");
+        inner_li_n.className = "li-name";
+        var inner_li_c = document.createElement("li");
+        inner_li_c.className = "li-country";
+        var inner_li_f = document.createElement("li");
+        inner_li_f.className = "li-founded";
+        inner_li_n.textContent = m.name;
+        inner_li_c.textContent = m.country;
+        inner_li_f.textContent = m.founded;
+        inner_ul.appendChild(inner_li_n);
+        inner_ul.appendChild(inner_li_c);
+        inner_ul.appendChild(inner_li_f);
+        outer_li.appendChild(inner_ul);
+        list.appendChild(outer_li);
     }
     manuf_listings.appendChild(list);
 }
@@ -225,9 +241,9 @@ function logout() {
 }
 
 function get_cars(man) {
-    document.cookies = "name=" + man;
-    console.log(document.cookies);
-    $.get("/manufacturer", data => {
+    document.cookie = "name=" + man;
+    //console.log(document.cookie);
+    $.get("/manufacturer").done(data => {
         console.log(data);
     });
     //delete_cookie('name');

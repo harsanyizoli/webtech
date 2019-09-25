@@ -233,3 +233,26 @@ div#profile {
         }
     }
 }
+ul.outer-list {
+    width: 100%;
+    li.outer-li {
+        margin-bottom: 5px;
+        width: 100%;
+        ul.inner-list {
+            li.li-name {
+                display: inline-block;
+                width: 20%;
+            }
+            li.li-country {
+                margin-left: 50px;
+                display: inline-block;
+                width: 20%;
+            }
+            li.li-founded {
+                display: inline-block;
+                width: 20%;
+                float: right;
+            }
+        }
+    }
+}
