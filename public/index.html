@@ -40,14 +40,64 @@
     </div>
     <div id="profile">
         <ul>
-            <li>Add car</li>
-            <li>Add manufacturer</li>
+            <li id="add_car_btn">Add car</li>
+            <li id="add_mf_btn">Add manufacturer</li>
             <li id="logout_btn">Log out</li>
         </ul>
+        <!-- The Modal -->
+        <div id="car_modal" class="modal">
+            <span id="close_modal1" class="close" title="Close Modal">&times;</span>
+            <!-- Modal Content -->
+            <form class="modal-content animate" action="">    
+                <div class="container">
+                    <label for="name"><b>Car name</b></label>
+                    <input type="text" name="name" required>
+                
+                    <label for="cons"><b>Consumption</b></label>
+                    <input type="number" name="cons" required>
+
+                    <label for="color"><b>Color</b></label>
+                    <input type="text" name="color" required>
+
+                    <label for="mf"><b>Manufacturer</b></label>
+                    <input type="text" name="mf" required>
+
+                    <label for="avail"><b>Available</b></label>
+                    <input type="number" value="1" name="avail" required>
+
+                    <label for="year"><b>Year</b></label>
+                    <input type="number" value="2000" name="year" required>
+
+                    <label for="hp"><b>Horsepower</b></label>
+                    <input type="number" name="hp" required>
+
+                    <button type="button" id="car_modal_submit">Submit</button>
+
+                </div>
+            </form>
+      </div>
+      <!-- The Modal -->
+      <div id="mf_modal" class="modal">
+        <span id="close_modal2" class="close" title="Close Modal">&times;</span>
+        <!-- Modal Content -->
+        <form class="modal-content animate" action="">    
+            <div class="container">
+                <label for="name"><b>Manufacturer's name</b></label>
+                <input type="text" name="name" required>
+
+                <label for="color"><b>Country</b></label>
+                <input type="text" name="color" required>
+
+                <label for="year"><b>Founded</b></label>
+                <input type="date" required>
+                
+                <button type="button" id="mf_modal_submit">Submit</button>
+
+            </div>
+        </form>
+  </div>
     </div>
-    <div id="main">
-        <div class="listings" id="listings"></div>
-    </div>
+    <div id="main"></div>
     <script src="js/index.js"></script>
 </body>
 </html>
