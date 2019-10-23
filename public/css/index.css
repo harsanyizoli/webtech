@@ -349,5 +349,21 @@ div.car_search {
     transform: scale(1);
   }
 }
+div#landing {
+  z-index: 1002;
+  width: 100%;
+  background-image: url(https://i.pinimg.com/originals/6c/21/30/6c2130e3ed83f3d0e898e5519d4f5f55.jpg);
+  background-size: cover;
+  background-position: center center;
+  height: 500px;
+}
+div#landing h2 {
+  padding-top: 400px;
+}
+div#landing h2, div#landing h4 {
+  padding-left: 50px;
+  padding-bottom: 5px;
+  color: white;
+}
 
 /*# sourceMappingURL=index.css.map */

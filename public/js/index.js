@@ -13,10 +13,10 @@ var target = "";
 function check_login(){
     let logged_in = get_cookie("user") != "" ? true : false;
     if (logged_in) {
-        console.log("logged in");
+        //console.log("logged in");
         return true;
     } else {
-        console.log("logged out");
+        //console.log("logged out");
         return false;
     }
 }
@@ -40,6 +40,8 @@ function delete_cookie(str){
 }
 
 (function() {
+    //$("#landing").css("background", "url('../images/ad.png')");
+    load_landing();
     if(check_login()){
         $("#login-button").html("Profile");
     } else {
@@ -57,7 +59,17 @@ function load_cars(){
 $("#logo").click(() => {
     target = "landing";
     clear_search();
+    load_landing();
 });
+
+function load_landing(){
+    main.innerHTML = `
+        <div id="landing">
+                <h2 >Car dealership</h2>
+                <h4>Contact: +05678288</h4>
+                <h4>Address: 267811 asd street 2</h4>
+        </div>`
+}
 
 function load_manufs(){
     $.ajax("/manufacturers")
@@ -106,16 +118,12 @@ function add_car_listing(cars) {
 
 function add_manuf_listing(manufs) {
     //console.log(manufs);
+    manuf_listings.innerHTML = "";
     let list = document.createElement("ul");
     list.className = "outer-list";
     for(m of manufs){
         let outer_li = document.createElement("li");
-        outer_li.className             .done((data)=>{
-            console.log(data);
-            console.log("sdad");
-        }).done(status => {
-            console.log(status);
-        })= "outer-li";
+        outer_li.className = "outer-li";
         let inner_ul = document.createElement("ul");
         inner_ul.className = "inner-list";
         let inner_li_n = document.createElement("li");
@@ -145,6 +153,10 @@ function cp() {
 }
 
 $("#list_cars").click(() => {
+    list_cars();
+});
+
+function list_cars(){
     target = "cars"
     clear_search();
     add_car_options();
@@ -163,9 +175,13 @@ $("#list_cars").click(() => {
                 add_car_listing(data);
             });
     });
+}
+
+$("#list_manuf").click(() => {  
+    list_manuf();
 });
 
-$("#list_manuf").click(() => {
+function list_manuf(){
     target = "manufs";
     clear_search();
     //$("#car_search").on("input", () => {
@@ -174,7 +190,7 @@ $("#list_manuf").click(() => {
     //});
     load_manufs();
     main.appendChild(manuf_listings);
-});
+}
 
 
 $("#search_bar").on("input", function() {
@@ -303,21 +319,35 @@ function add_car_form() {
         }
         $.post("/addCar", car,(data) => {
             console.log(data); 
-        }).fail( () => {
-            show_msg("Failed to add car!")
+        }).fail( textStatus => {
+            show_msg("Failed to add car!" + textStatus);
         })
         $("#car_modal").hide();
+        list_cars();
     });
 }
 
+var months = ["January", "February", "March", 
+              "April", "May", "June", "July", 
+              "August", "September", "October", 
+              "November", "December"];
+
 function add_mf_form(){
     $("#mf_modal").show();
-    console.log("anyad");
     $("#mf_modal_submit").on("click", () => {
         
         let mname = $("#mf_modal input")[0].value;
         let mcountry = $("#mf_modal input")[1].value;
         let mdate = $("#mf_modal input")[2].value;
+        //console.log(mdate);
+        mdates = mdate.split("-");
+
+        let y = mdates[0];
+        let m = mdates[1];
+        m = months[m - 1];
+        let d = mdates[2];
+        mdate = m + " " + d + ", " + y;
+        //console.log(mdate);
 
         let mf = {
             "name" : mname,
@@ -326,13 +356,13 @@ function add_mf_form(){
         }
 
         $.post("/addManufacturers", mf ,(data) => {
-            console.log(data); 
-        }).fail( () => {
-            show_msg("Failed to add manufacturer!")
+            //console.log(data); 
+        }).fail( (jqXHR, textStatus, error) => {
+            show_msg("Failed to add manufacturer! " + error)
         })
 
-        console.log(mf);
         $("#mf_modal").hide();
+        list_manuf();
     });
 }
 var car_modal = document.getElementById('car_modal');

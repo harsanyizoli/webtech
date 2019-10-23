@@ -341,3 +341,22 @@ div.car_search {
     from {transform: scale(0)}
     to {transform: scale(1)}
   } 
+
+div#landing {
+    z-index: 1002;
+    width: 100%;
+    background-image: url(https://i.pinimg.com/originals/6c/21/30/6c2130e3ed83f3d0e898e5519d4f5f55.jpg);
+    //background-image: url(../images/ad.png);
+    background-size: cover;
+    background-position: center center;
+    height: 500px;
+    h2 {
+        padding-top: 400px;
+    }
+    h2, h4 {
+        padding-left: 50px;
+        padding-bottom: 5px;
+        color: white;
+    }
+}
+
