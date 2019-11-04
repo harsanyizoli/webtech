@@ -204,7 +204,6 @@ app.get('/cars', function (req, res) {
 });
 app.get('/manufacturer', function (req, res) {
     var ok = false;
-    console.log(req.cookies);
     for (var manufacturer of manufacturers) {
         if (manufacturer.name === req.cookies.name) {
             ok = true;
